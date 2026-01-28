@@ -1,0 +1,15 @@
+image: golang:1.23
+
+stages:
+  - test
+
+unit-tests:
+  stage: test
+  script:
+    - go test -v ./...
+
+integration-tests:
+  stage: test
+  script:
+    - go test -v -tags=integration ./...
+
