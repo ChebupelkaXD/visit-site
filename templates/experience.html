@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опыт работы | Павел Сливенко</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin-top: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-green), var(--accent-cyan));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            border: 3px solid var(--bg-primary);
+        }
+
+        .timeline-date {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-cyan);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .timeline-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .timeline-company {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-company strong {
+            color: var(--accent-green);
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-achievements {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-green);
+        }
+
+        .timeline-achievements h4 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .achievements-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievements-list li {
+            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .achievements-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .skills-used {
+            margin-top: 1.5rem;
+        }
+
+        .education-section {
+            margin-top: 5rem;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .education-card {
+            padding: 2rem;
+        }
+
+        .education-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-degree {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .education-institution {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-year {
+            color: var(--accent-cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline-item {
+                padding-left: 1.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 6s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 9s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 12s;"></div>
+
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">&lt;/QA&gt;</a>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/about">О себе</a></li>
+                <li><a href="/skills">Навыки</a></li>
+                <li><a href="/projects">Проекты</a></li>
+                <li><a href="/experience">Опыт</a></li>
+                <li><a href="/contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Опыт работы</h1>
+            <p class="page-subtitle">Мой профессиональный путь в QA</p>
+
+            <div class="timeline">
+                <div class="timeline-item fade-in-up stagger-1">
+                    <div class="timeline-date">Март 2022 - настоящее время</div>
+                    <h3 class="timeline-title">Senior QA Automation Engineer</h3>
+                    <div class="timeline-company"><strong>Tech Innovators Inc.</strong> · Полная занятость</div>
+                    
+                    <p class="timeline-description">
+                        Разработка и поддержка фреймворка автоматизации для микросервисной архитектуры финтех-платформы.
+                        Внедрение практик shift-left testing и культуры качества в команде разработки.
+                        Менторинг 3 junior QA engineers.
+                    </p>
+
+                    <div class="timeline-achievements">
+                        <h4>🎯 Ключевые достижения:</h4>
+                        <ul class="achievements-list">
+                            <li>Увеличил покрытие автотестами с 45% до 85% за год</li>
+                            <li>Сократил время релиза на 40% благодаря оптимизации CI/CD</li>
+                            <li>Разработал кастомный фреймворк для E2E тестирования 15+ микросервисов</li>
+                            <li>Внедрил практики contract testing между сервисами</li>
+                            <li>Снизил количество production инцидентов на 65%</li>
+                            <li>Создал систему автоматической генерации тестовых данных</li>
+                        </ul>
+                    </div>
+
+                    <div class="skills-used">
+                        <div class="tech-stack">
+                            <span class="tech-tag">Go</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">GitLab CI</span>
+                            <span class="tech-tag">gRPC</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">RabbitMQ</span>
+                            <span class="tech-tag">Allure</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in-up stagger-2">
+                    <div class="timeline-date">Январь 2020 - Март 2022</div>
+                    <h3 class="timeline-title">QA Automation Engineer</h3>
+                    <div class="timeline-company"><strong>Digital Solutions Ltd.</strong> · Полная занятость</div>
+                    
+                    <p class="timeline-description">
+                        Разработка автотестов для REST API и веб-приложений. Настройка CI/CD pipeline 
+                        для автоматического запуска тестов. Проведение нагрузочного тестирования и анализ 
+                        производительности системы.
+                    </p>
+
+                    <div class="timeline-achievements">
+                        <h4>🎯 Ключевые достижения:</h4>
+                        <ul class="achievements-list">
+                            <li>Разработал 300+ автотестов для REST API на Go</li>
+                            <li>Настроил автоматический запуск тестов в GitLab CI</li>
+                            <li>Провел нагрузочное тестирование и оптимизировал производительность на 30%</li>
+                            <li>Внедрил практику code review для тестового кода</li>
+                            <li>Создал документацию по best practices автоматизации</li>
+                        </ul>
+                    </div>
+
+                    <div class="skills-used">
+                        <div class="tech-stack">
+                            <span class="tech-tag">Go</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Jenkins</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">JMeter</span>
+                            <span class="tech-tag">Selenium</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in-up stagger-3">
+                    <div class="timeline-date">Июнь 2018 - Декабрь 2019</div>
+                    <h3 class="timeline-title">QA Engineer</h3>
+                    <div class="timeline-company"><strong>StartupHub</strong> · Полная занятость</div>
+                    
+                    <p class="timeline-description">
+                        Функциональное и регрессионное тестирование веб-приложений для e-commerce платформы.
+                        Написание тест-кейсов и чек-листов. Начало работы с автоматизацией тестирования.
+                        Тесное взаимодействие с командой разработки.
+                    </p>
+
+                    <div class="timeline-achievements">
+                        <h4>🎯 Ключевые достижения:</h4>
+                        <ul class="achievements-list">
+                            <li>Создал 500+ тест-кейсов для различных модулей платформы</li>
+                            <li>Обнаружил и задокументировал 200+ багов</li>
+                            <li>Начал автоматизацию регрессионных тестов (50+ автотестов)</li>
+                            <li>Участвовал в планировании спринтов и оценке задач</li>
+                            <li>Провел обучение команды по основам тестирования</li>
+                        </ul>
+                    </div>
+
+                    <div class="skills-used">
+                        <div class="tech-stack">
+                            <span class="tech-tag">Manual Testing</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Postman</span>
+                            <span class="tech-tag">Jira</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Selenium</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-section fade-in-up">
+                <h2 class="section-title">Образование</h2>
+                <div class="education-grid">
+                    <div class="education-card card">
+                        <div class="education-icon">🎓</div>
+                        <div class="education-degree">Бакалавр прикладной информатики</div>
+                        <div class="education-institution">Московский Государственный Технический Университет</div>
+                        <div class="education-year">2014 - 2018</div>
+                    </div>
+
+                    <div class="education-card card">
+                        <div class="education-icon">📚</div>
+                        <div class="education-degree">Advanced Testing in Go</div>
+                        <div class="education-institution">Go Academy Online</div>
+                        <div class="education-year">2022</div>
+                    </div>
+
+                    <div class="education-card card">
+                        <div class="education-icon">🏆</div>
+                        <div class="education-degree">ISTQB Certified Tester</div>
+                        <div class="education-institution">International Software Testing Qualifications Board</div>
+                        <div class="education-year">2021</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Павел Сливенко. QA Automation Engineer</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
