@@ -7,16 +7,21 @@ import (
 )
 
 func TestHome(t *testing.T) {
-	req := httptest.NewRequest("GET", "/", nil)
-	w := httptest.NewRecorder()
+	t.Run("Главная страница", func(t *testing.T) {
+		req := httptest.NewRequest("GET", "/", nil)
+		w := httptest.NewRecorder()
 
-	Home(w, req)
+		Home(w, req)
 
-	if w.Code != http.StatusOK {
-		t.Errorf("Expected status 200, got %d", w.Code)
-	}
+		want := "Im QA"
+		got := w.Body.String()
 
-	if w.Body.String() != "Hello, I'm QA" {
-		t.Errorf("Unexpected body: %s", w.Body.String())
-	}
+		if w.Code != http.StatusOK {
+			t.Errorf("Expected status 200, got %d", w.Code)
+		}
+
+		if got != want {
+			t.Errorf("Expected string: %s, got %s", want, got)
+		}
+	})
 }
