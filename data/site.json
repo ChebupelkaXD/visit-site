@@ -1,0 +1,29 @@
+{
+  "name": "Алексей Петров",
+  "role": "QA Automation Engineer (Go)",
+  "tagline": "5+ лет в автоматизации тестирования • Go • TDD • CI/CD",
+  "email": "alexey@example.com",
+  "github": "https://github.com/alexeypetrov",
+  "telegram": "https://t.me/alexeypetrov",
+  "linkedin": "https://linkedin.com/in/alexeypetrov",
+
+  "about": {
+    "intro": "Привет! Я QA Automation Engineer с более чем 5 годами опыта...",
+    "mission": "Создавать надёжные, масштабируемые решения для автоматизации..."
+  },
+
+  "skills": [
+    {"name": "Go",                "level": "Advanced", "icon": "golang"},
+    {"name": "Test Automation",   "level": "Expert",   "icon": "test"},
+    {"name": "TDD / BDD",         "level": "Advanced"},
+    {"name": "Docker / CI/CD",    "level": "Intermediate"}
+  ],
+
+  "social": [
+    {"name": "GitHub",   "url": "https://github.com/alexeypetrov",   "icon": "github"},
+    {"name": "Telegram", "url": "https://t.me/alexeypetrov",         "icon": "telegram"},
+    {"name": "LinkedIn", "url": "https://linkedin.com/in/alexeypetrov", "icon": "linkedin"}
+  ],
+
+  "interests": ["Геймдев", "Open Source", "Техническая литература", "Бег", "AI/ML"]
+}

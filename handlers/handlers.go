@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"path/filepath"
+	"porfolio/data"
 	"runtime"
 )
 
@@ -28,7 +29,7 @@ func init() {
 ))*/
 
 func TemplateRender(w http.ResponseWriter, tmplName string) {
-	err := templates.ExecuteTemplate(w, tmplName, nil)
+	err := templates.ExecuteTemplate(w, tmplName, data.Data)
 
 	if err != nil {
 		log.Printf("Template error (%s): %v", tmplName, err)
