@@ -228,7 +228,7 @@
                 <li><a href="/">Главная</a></li>
                 <li><a href="/about">О себе</a></li>
                 <li><a href="/skills">Навыки</a></li>
-                <li><a href="/projects">Проекты</a></li>
+<!--                <li><a href="/projects">Проекты</a></li>-->
                 <li><a href="/experience">Опыт</a></li>
                 <li><a href="/contacts">Контакты</a></li>
             </ul>
@@ -247,25 +247,25 @@
                     </div>
 
                     <div class="social-links">
-                        <a href="https://github.com/alexeypetrov" class="social-link">
+                        <a href="{{.Github}}" class="social-link">
                             <span class="social-icon">💻</span>
                             <div class="social-info">
                                 <div class="social-name">GitHub</div>
-                                <div class="social-handle">@alexeypetrov</div>
+                                <div class="social-handle">@pavelslivenko</div>
                             </div>
                         </a>
-                        <a href="https://linkedin.com/in/alexeypetrov" class="social-link">
+                        <a href="{{.Linkedin}}" class="social-link">
                             <span class="social-icon">💼</span>
                             <div class="social-info">
                                 <div class="social-name">LinkedIn</div>
-                                <div class="social-handle">@alexeypetrov</div>
+                                <div class="social-handle">@pavelslivenko</div>
                             </div>
                         </a>
-                        <a href="https://t.me/alexeypetrov" class="social-link">
+                        <a href="{{.Telegram}}" class="social-link">
                             <span class="social-icon">✈️</span>
                             <div class="social-info">
                                 <div class="social-name">Telegram</div>
-                                <div class="social-handle">@alexeypetrov</div>
+                                <div class="social-handle">@vuorg</div>
                             </div>
                         </a>
                     </div>
@@ -273,15 +273,11 @@
 
                 <div class="about-text">
                     <p class="intro-text">
-                        Привет! Я <strong>Павел Сливенко</strong> — QA Automation Engineer с более чем <strong>5 годами опыта</strong>
-                        в тестировании программного обеспечения. Специализируюсь на автоматизации тестирования с использованием 
-                        <strong>Go</strong>, создании надёжных фреймворков и внедрении лучших практик в процессы разработки.
+                    {{.About.Intro}}
                     </p>
 
                     <p class="intro-text">
-                        Мой путь в QA начался с ручного тестирования, но очень быстро я понял силу автоматизации. 
-                        Сейчас я фокусируюсь на создании комплексных решений для тестирования, которые помогают командам 
-                        выпускать качественный продукт быстрее и с большей уверенностью.
+                        {{.About.Mission}}
                     </p>
 
                     <div class="highlight-box fade-in-up stagger-2">
@@ -344,8 +340,7 @@
                     <div class="highlight-box fade-in-up" style="margin-top: 3rem;">
                         <h3>💡 Интересный факт</h3>
                         <p style="color: var(--text-secondary); line-height: 1.8;">
-                            В свободное время я разрабатываю open-source инструменты для тестирования и веду технический блог, 
-                            где делюсь своим опытом и лучшими практиками в области QA автоматизации.
+                            Параллельно я также занимаюсь автоматизацией рутинных бизнес процессов на базе технологий RPA.
                         </p>
                     </div>
                 </div>

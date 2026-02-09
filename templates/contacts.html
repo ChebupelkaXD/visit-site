@@ -251,7 +251,7 @@
                 <li><a href="/">Главная</a></li>
                 <li><a href="/about">О себе</a></li>
                 <li><a href="/skills">Навыки</a></li>
-                <li><a href="/projects">Проекты</a></li>
+<!--                <li><a href="/projects">Проекты</a></li>-->
                 <li><a href="/experience">Опыт</a></li>
                 <li><a href="/contacts">Контакты</a></li>
             </ul>
@@ -285,52 +285,52 @@
                             <div class="contact-icon">📧</div>
                             <div class="contact-details">
                                 <h3>Email</h3>
-                                <div class="contact-value">aleksey.petrov@example.com</div>
+                                <div class="contact-value">{{.Email}}</div>
                                 <div class="contact-description">Для официальных предложений</div>
                             </div>
                         </a>
 
-                        <a href="https://t.me/alexeypetrov" class="contact-item fade-in-up stagger-2">
+                        <a href="{{.Telegram}}" class="contact-item fade-in-up stagger-2">
                             <div class="contact-icon">✈️</div>
                             <div class="contact-details">
                                 <h3>Telegram</h3>
-                                <div class="contact-value">@alexeypetrov</div>
+                                <div class="contact-value">@vuorg</div>
                                 <div class="contact-description">Быстрая связь для обсуждения проектов</div>
                             </div>
                         </a>
 
-                        <a href="https://linkedin.com/in/alexeypetrov" class="contact-item fade-in-up stagger-3">
+                        <a href="{{.Linkedin}}" class="contact-item fade-in-up stagger-3">
                             <div class="contact-icon">💼</div>
                             <div class="contact-details">
                                 <h3>LinkedIn</h3>
-                                <div class="contact-value">linkedin.com/in/alexeypetrov</div>
+                                <div class="contact-value">@pavelslivenko</div>
                                 <div class="contact-description">Профессиональная сеть</div>
                             </div>
                         </a>
 
-                        <a href="https://github.com/alexeypetrov" class="contact-item fade-in-up stagger-4">
+                        <a href="{{.Github}}" class="contact-item fade-in-up stagger-4">
                             <div class="contact-icon">💻</div>
                             <div class="contact-details">
                                 <h3>GitHub</h3>
-                                <div class="contact-value">github.com/alexeypetrov</div>
+                                <div class="contact-value">@pavelslivenko</div>
                                 <div class="contact-description">Мои проекты и вклад в open source</div>
                             </div>
                         </a>
                     </div>
 
                     <div class="social-proof fade-in-up stagger-5">
-                        <h3>Работаю с</h3>
+                        <h3>Статистика</h3>
                         <div class="stats-grid">
                             <div class="stat-box">
-                                <div class="stat-number">15+</div>
-                                <div class="stat-label">Компаний</div>
+                                <div class="stat-number">100К+</div>
+                                <div class="stat-label">Выпитых латте</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-number">50+</div>
+                                <div class="stat-number">10+</div>
                                 <div class="stat-label">Проектов</div>
                             </div>
                             <div class="stat-box">
-                                <div class="stat-number">5+</div>
+                                <div class="stat-number">3+</div>
                                 <div class="stat-label">Лет опыта</div>
                             </div>
                         </div>
@@ -343,12 +343,12 @@
                         <form id="contactForm">
                             <div class="form-group">
                                 <label for="name">Ваше имя *</label>
-                                <input type="text" id="name" name="name" required placeholder="Иван Иванов">
+                                <input type="text" id="name" name="name" required placeholder="Введите имя">
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Email *</label>
-                                <input type="email" id="email" name="email" required placeholder="ivan@example.com">
+                                <input type="email" id="email" name="email" required placeholder="example@mail.com">
                             </div>
 
                             <div class="form-group">

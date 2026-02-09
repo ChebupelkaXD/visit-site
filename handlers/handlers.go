@@ -50,9 +50,9 @@ func Skills(w http.ResponseWriter, r *http.Request) {
 	TemplateRender(w, "skills.html")
 }
 
-func Projects(w http.ResponseWriter, r *http.Request) {
+/*func Projects(w http.ResponseWriter, r *http.Request) {
 	TemplateRender(w, "projects.html")
-}
+}*/
 
 func Experience(w http.ResponseWriter, r *http.Request) {
 	TemplateRender(w, "experience.html")

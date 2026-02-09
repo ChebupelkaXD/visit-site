@@ -3,8 +3,10 @@ package data
 import (
 	_ "embed"
 	"encoding/json"
+	"html/template"
 )
 
+//go:embed site.json
 var siteJSON []byte
 
 type Site struct {
@@ -23,8 +25,8 @@ type Site struct {
 }
 
 type About struct {
-	Intro   string `json:"intro"`
-	Mission string `json:"mission"`
+	Intro   template.HTML `json:"intro"`
+	Mission template.HTML `json:"mission"`
 }
 
 type Skill struct {

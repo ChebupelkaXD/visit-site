@@ -21,7 +21,7 @@ func main() {
 		{"/", handlers.Home, "GET"},
 		{"/about", handlers.About, "GET"},
 		{"/skills", handlers.Skills, "GET"},
-		{"/projects", handlers.Projects, "GET"},
+		//{"/projects", handlers.Projects, "GET"},
 		{"/experience", handlers.Experience, "GET"},
 		{"/contacts", handlers.Contacts, "GET"},
 	}
