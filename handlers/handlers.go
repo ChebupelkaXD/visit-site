@@ -109,6 +109,12 @@ func ContactAPI(w http.ResponseWriter, r *http.Request) {
 	fromPassword := config.SMTP.Password
 	toEmail := config.SMTP.To
 
+	if fromEmail == "" || fromPassword == "" {
+		log.Printf("Ошибка: отсутствуют SMTP credentials (FROM_EMAIL, FROM_PASSWORD")
+		http.Error(w, "Сервис временно недоступен", http.StatusInternalServerError)
+		return
+	}
+
 	m := gomail.NewMessage()
 	m.SetHeader("From", fmt.Sprintf("%s <%s>", "Portfolio Site", fromEmail))
 	m.SetHeader("To", toEmail)

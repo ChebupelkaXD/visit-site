@@ -1,7 +1,6 @@
 package config
 
 import (
-	"log"
 	"os"
 	"strconv"
 
@@ -27,10 +26,6 @@ func init() {
 		From:     getEnv("FROM_EMAIL", ""),
 		Password: getEnv("FROM_PASSWORD", ""),
 		To:       getEnv("TO_EMAIL", ""),
-	}
-
-	if SMTP.From == "" || SMTP.Password == "" || SMTP.To == "" {
-		log.Fatal("Отсутствуют обязательные SMTP-переменные: FROM_EMAIL, FROM_PASSWORD, TO_EMAIL")
 	}
 }
 
