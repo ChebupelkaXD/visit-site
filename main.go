@@ -24,6 +24,7 @@ func main() {
 		//{"/projects", handlers.Projects, "GET"},
 		{"/experience", handlers.Experience, "GET"},
 		{"/contacts", handlers.Contacts, "GET"},
+		{"/api/contact", handlers.ContactAPI, "POST"},
 	}
 
 	r.PathPrefix("/static").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))

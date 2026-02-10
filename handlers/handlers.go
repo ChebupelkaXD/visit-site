@@ -1,15 +1,22 @@
 package handlers
 
 import (
+	"encoding/json"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 	"path/filepath"
+	"porfolio/config"
 	"porfolio/data"
 	"runtime"
+
+	"gopkg.in/gomail.v2"
 )
 
-var templates *template.Template
+var (
+	templates *template.Template
+)
 
 func init() {
 	_, filename, _, _ := runtime.Caller(0)
@@ -71,4 +78,66 @@ func NotFound(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+}
+
+func ContactAPI(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Merthod not allowed", http.StatusInternalServerError)
+	}
+
+	var input struct {
+		Name    string `json:"name"`
+		Email   string `json:"email"`
+		Message string `json:"message"`
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
+		http.Error(w, "Invalid JSON", http.StatusBadRequest)
+		return
+	}
+
+	if input.Name == "" || input.Email == "" || input.Message == "" {
+		http.Error(w, "Missing required fields", http.StatusBadRequest)
+		return
+	}
+
+	log.Printf("Новый запрос на сотрудничество от %s, Email: %s, Сообщение: %s", input.Name, input.Email, input.Message)
+
+	smtpHost := config.SMTP.Host
+	smtpPort := config.SMTP.Port
+	fromEmail := config.SMTP.From
+	fromPassword := config.SMTP.Password
+	toEmail := config.SMTP.To
+
+	m := gomail.NewMessage()
+	m.SetHeader("From", fmt.Sprintf("%s <%s>", "Portfolio Site", fromEmail))
+	m.SetHeader("To", toEmail)
+	m.SetHeader("Reply-To", input.Email)
+	m.SetHeader("Subject", fmt.Sprintf("Новое сообщение от %s", input.Name))
+
+	body := fmt.Sprintf(`
+        <h2>Новое сообщение с сайта</h2>
+        <p><strong>Имя:</strong> %s</p>
+        <p><strong>Email:</strong> %s</p>
+        <p><strong>Сообщение:</strong></p>
+        <blockquote>%s</blockquote>
+        <hr>
+        <small>Это автоматическое письмо с формы обратной связи</small>
+    `, input.Name, input.Email, input.Message)
+
+	m.SetBody("text/html", body)
+
+	d := gomail.NewDialer(smtpHost, smtpPort, fromEmail, fromPassword)
+
+	if err := d.DialAndSend(m); err != nil {
+		log.Printf("Ошибка отправки email: %v", err)
+		http.Error(w, "Failed to send message", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{
+		"status":  "success",
+		"message": "Сообщение получено",
+	})
 }
