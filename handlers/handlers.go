@@ -82,7 +82,7 @@ func NotFound(w http.ResponseWriter, r *http.Request) {
 
 func ContactAPI(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
-		http.Error(w, "Merthod not allowed", http.StatusInternalServerError)
+		http.Error(w, "Method not allowed", http.StatusInternalServerError)
 	}
 
 	var input struct {
@@ -110,7 +110,7 @@ func ContactAPI(w http.ResponseWriter, r *http.Request) {
 	toEmail := config.SMTP.To
 
 	if fromEmail == "" || fromPassword == "" {
-		log.Printf("Ошибка: отсутствуют SMTP credentials (FROM_EMAIL, FROM_PASSWORD")
+		log.Printf("Ошибка: отсутствуют SMTP credentials (FROM_EMAIL, FROM_PASSWORD)")
 		http.Error(w, "Сервис временно недоступен", http.StatusInternalServerError)
 		return
 	}
