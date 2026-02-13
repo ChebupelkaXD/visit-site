@@ -1,15 +1,75 @@
-image: golang:1.25
+test_image: &test_image golang:1.25
 
 stages:
   - test
+  - build
+  - deploy
 
 unit-tests:
   stage: test
+  image: *test_image
   script:
     - go test -v ./...
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: never
+    - when: on_success
 
 integration-tests:
   stage: test
+  image: *test_image
   script:
     - go test -v -tags=integration ./...
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: never
+    - when: on_success
 
+build:
+  stage: build
+  image: docker:stable
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "master"'
+      when: on_success
+
+# ────────────────────────────────────────────────
+# Деплой — ТОЛЬКО на master
+# ────────────────────────────────────────────────
+deploy_production:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh-client bash
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh && chmod 700 ~/.ssh
+    - ssh-keyscan -H $PROD_SERVER_IP >> ~/.ssh/known_hosts
+  script:
+    - ssh $PROD_USER@$PROD_SERVER_IP "
+      docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY &&
+      docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG &&
+      docker stop portfolio || true &&
+      docker rm portfolio || true &&
+      docker run -d \
+      --name portfolio \
+      -p 8080:8080 \
+      --restart unless-stopped \
+      -e SMTP_HOST=$SMTP_HOST \
+      -e SMTP_PORT=$SMTP_PORT \
+      -e FROM_EMAIL=$FROM_EMAIL \
+      -e FROM_PASSWORD=$FROM_PASSWORD \
+      -e TO_EMAIL=$TO_EMAIL \
+      $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+      "
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: on_success
+  environment:
+    name: production
