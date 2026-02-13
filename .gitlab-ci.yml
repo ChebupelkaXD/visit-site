@@ -39,9 +39,6 @@ build:
     - if: '$CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "master"'
       when: on_success
 
-# ────────────────────────────────────────────────
-# Деплой — ТОЛЬКО на master
-# ────────────────────────────────────────────────
 deploy_production:
   stage: deploy
   image: alpine:latest
