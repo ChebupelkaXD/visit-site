@@ -49,7 +49,7 @@ deploy_production:
     - mkdir -p ~/.ssh && chmod 700 ~/.ssh
     - ssh-keyscan -H $PROD_SERVER_IP >> ~/.ssh/known_hosts
   script:
-    - ssh $PROD_USER@$PROD_SERVER_IP "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY && docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG && docker stop portfolio || true && docker rm portfolio || true && docker run -d --name portfolio -p 8080:8080 --restart unless-stopped -e SMTP_HOST='$SMTP_HOST' -e SMTP_PORT='$SMTP_PORT' -e FROM_EMAIL='$FROM_EMAIL' -e FROM_PASSWORD='$FROM_PASSWORD' -e TO_EMAIL='$TO_EMAIL' $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - ssh $PROD_USER@$PROD_SERVER_IP "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY && docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG && docker stop portfolio || true && docker rm portfolio || true && fuser -k 8080/tcp || true && docker run -d --name portfolio -p 8080:8080 --restart unless-stopped -e SMTP_HOST='$SMTP_HOST' -e SMTP_PORT='$SMTP_PORT' -e FROM_EMAIL='$FROM_EMAIL' -e FROM_PASSWORD='$FROM_PASSWORD' -e TO_EMAIL='$TO_EMAIL' $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
   rules:
     - if: '$CI_COMMIT_BRANCH == "master"'
       when: on_success
