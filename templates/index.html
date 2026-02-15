@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Павел Сливенко | QA Automation Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 4rem;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tag {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Profile Image */
+        .hero-image {
+            position: relative;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .profile-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+            border-radius: 20px;
+            opacity: 0.2;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .profile-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 3px solid var(--accent-green);
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.3);
+            background: linear-gradient(135deg, var(--bg-secondary), var(--code-bg));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Terminal */
+        .terminal {
+            background: var(--code-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 3rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            animation: fadeIn 0.8s ease-out 0.6s both;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f56;
+        }
+
+        .terminal-dot:nth-child(2) { background: #ffbd2e; }
+        .terminal-dot:nth-child(3) { background: #27c93f; }
+
+        .terminal-content {
+            color: var(--text-secondary);
+        }
+
+        .terminal-line {
+            margin: 0.5rem 0;
+        }
+
+        .terminal-prompt {
+            color: var(--accent-green);
+        }
+
+        .terminal-command {
+            color: var(--accent-cyan);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-green);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-green);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .profile-image-wrapper {
+                max-width: 300px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 6s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 9s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 12s;"></div>
+
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">&lt;/QA&gt;</a>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/about">О себе</a></li>
+                <li><a href="/skills">Навыки</a></li>
+<!--                <li><a href="/projects">Проекты</a></li>-->
+                <li><a href="/experience">Опыт</a></li>
+                <li><a href="/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <span class="hero-tag">$ whoami</span>
+                        <h1>{{.Name}}</h1>
+                        <p class="hero-subtitle">QA Automation Engineer | Go Developer</p>
+                        <p class="hero-description">
+                            Разрабатываю надёжные автотесты на Go для обеспечения качества ПО. 
+                            Специализируюсь на тестировании API, создании фреймворков и CI/CD интеграции.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="/contacts" class="btn btn-primary">Связаться со мной</a>
+                            <a href="{{.Github}}" class="btn btn-secondary">Посмотреть проекты</a>
+                        </div>
+                    </div>
+
+                    <div class="hero-image">
+                        <div class="profile-image-wrapper">
+                            <div class="profile-image">
+                                 <img src="/static/img/photo.jpg" alt="Моя фотка">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-dot"></div>
+                        <div class="terminal-dot"></div>
+                        <div class="terminal-dot"></div>
+                    </div>
+                    <div class="terminal-content">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">❯</span> 
+                            <span class="terminal-command">go test</span> ./...
+                        </div>
+                        <div class="terminal-line">
+                            <span style="color: var(--accent-green);">✓</span> TestUserAuthentication
+                        </div>
+                        <div class="terminal-line">
+                            <span style="color: var(--accent-green);">✓</span> TestAPIEndpoints
+                        </div>
+                        <div class="terminal-line">
+                            <span style="color: var(--accent-green);">✓</span> TestDatabaseIntegration
+                        </div>
+                        <div class="terminal-line" style="margin-top: 1rem;">
+                            <span style="color: var(--accent-green);">PASS</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span>coverage: 94.2% of statements</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card fade-in-up stagger-1">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Лет опыта</div>
+                    </div>
+                    <div class="stat-card fade-in-up stagger-2">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Проектов</div>
+                    </div>
+                    <div class="stat-card fade-in-up stagger-3">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Покрытие тестами</div>
+                    </div>
+                    <div class="stat-card fade-in-up stagger-4">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Павел Сливенко. QA Automation Engineer</p>
+            <p style="margin-top: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+                <span style="color: var(--accent-green);">console.log</span>("Всегда открыт для интересных проектов! 🚀")
+            </p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

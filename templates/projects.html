@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекты | Павел Сливенко</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .projects-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.05), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-green);
+            transform: translateX(10px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .project-link:hover {
+            transform: scale(1.2);
+            color: var(--accent-green);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .meta-icon {
+            color: var(--accent-green);
+        }
+
+        .project-highlights {
+            background: rgba(0, 255, 136, 0.05);
+            border-left: 3px solid var(--accent-green);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .project-highlights h4 {
+            color: var(--accent-green);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .highlights-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlights-list li {
+            color: var(--text-secondary);
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .highlights-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .status-active {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+        }
+
+        .status-completed {
+            background: rgba(0, 217, 255, 0.2);
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 6s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 9s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 12s;"></div>
+
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">&lt;/QA&gt;</a>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/about">О себе</a></li>
+                <li><a href="/skills">Навыки</a></li>
+                <li><a href="/projects">Проекты</a></li>
+                <li><a href="/experience">Опыт</a></li>
+                <li><a href="/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Мои проекты</h1>
+            <p class="page-subtitle">Избранные работы и достижения</p>
+
+            <div class="filters fade-in-up">
+                <button class="filter-btn active" data-filter="all">Все проекты</button>
+                <button class="filter-btn" data-filter="automation">Автоматизация</button>
+                <button class="filter-btn" data-filter="framework">Фреймворки</button>
+                <button class="filter-btn" data-filter="tools">Инструменты</button>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card fade-in-up stagger-1" data-category="framework">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">E2E Testing Framework</h3>
+                            <span class="project-status status-active">В разработке</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alexeypetrov/e2e-framework" class="project-link" title="GitHub">💻</a>
+                            <a href="#" class="project-link" title="Демо">🚀</a>
+                        </div>
+                    </div>
+
+                    <div class="project-meta">
+                        <span class="meta-item">
+                            <span class="meta-icon">📅</span>
+                            2024 - настоящее время
+                        </span>
+                        <span class="meta-item">
+                            <span class="meta-icon">⭐</span>
+                            150+ звезд на GitHub
+                        </span>
+                    </div>
+
+                    <p class="project-description">
+                        Кастомный фреймворк для end-to-end тестирования микросервисной архитектуры. 
+                        Предоставляет удобные абстракции для написания тестов, поддержку параллельного запуска,
+                        интеграцию с Allure для отчётности и автоматическую отправку уведомлений в Slack.
+                    </p>
+
+                    <div class="project-highlights">
+                        <h4>Ключевые достижения:</h4>
+                        <ul class="highlights-list">
+                            <li>Сокращение времени регрессионного тестирования на 70%</li>
+                            <li>Покрытие автотестами увеличено до 85%</li>
+                            <li>Поддержка 15+ микросервисов</li>
+                            <li>Интеграция с 3 CI/CD платформами</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Go</span>
+                        <span class="tech-tag">Testcontainers</span>
+                        <span class="tech-tag">Allure</span>
+                        <span class="tech-tag">Docker Compose</span>
+                        <span class="tech-tag">gRPC</span>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up stagger-2" data-category="tools">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">API Load Testing Suite</h3>
+                            <span class="project-status status-completed">Завершено</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alexeypetrov/load-testing" class="project-link" title="GitHub">💻</a>
+                        </div>
+                    </div>
+
+                    <div class="project-meta">
+                        <span class="meta-item">
+                            <span class="meta-icon">📅</span>
+                            2023
+                        </span>
+                        <span class="meta-item">
+                            <span class="meta-icon">👥</span>
+                            Используется в 5 командах
+                        </span>
+                    </div>
+
+                    <p class="project-description">
+                        Инструмент для нагрузочного тестирования REST API с визуализацией метрик в реальном времени.
+                        Поддержка сценариев с динамической нагрузкой, генерация подробных HTML отчётов с графиками
+                        и автоматический анализ узких мест производительности.
+                    </p>
+
+                    <div class="project-highlights">
+                        <h4>Ключевые особенности:</h4>
+                        <ul class="highlights-list">
+                            <li>Тестирование до 10,000 RPS</li>
+                            <li>Автоматическое обнаружение bottleneck'ов</li>
+                            <li>Интеграция с Grafana и Prometheus</li>
+                            <li>Поддержка различных сценариев нагрузки</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Go</span>
+                        <span class="tech-tag">Grafana</span>
+                        <span class="tech-tag">Prometheus</span>
+                        <span class="tech-tag">K6</span>
+                        <span class="tech-tag">InfluxDB</span>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up stagger-3" data-category="tools">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">Test Data Generator</h3>
+                            <span class="project-status status-active">Поддержка</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alexeypetrov/test-data-gen" class="project-link" title="GitHub">💻</a>
+                            <a href="#" class="project-link" title="Документация">📚</a>
+                        </div>
+                    </div>
+
+                    <div class="project-meta">
+                        <span class="meta-item">
+                            <span class="meta-icon">📅</span>
+                            2022 - настоящее время
+                        </span>
+                        <span class="meta-item">
+                            <span class="meta-icon">⭐</span>
+                            80+ звезд на GitHub
+                        </span>
+                    </div>
+
+                    <p class="project-description">
+                        CLI-утилита для генерации тестовых данных на основе JSON-схем.
+                        Поддержка кастомных генераторов, связей между сущностями, валидации данных
+                        и экспорта в различные форматы (JSON, CSV, SQL).
+                    </p>
+
+                    <div class="project-highlights">
+                        <h4>Возможности:</h4>
+                        <ul class="highlights-list">
+                            <li>Генерация сложных иерархических данных</li>
+                            <li>Поддержка локализации (10+ языков)</li>
+                            <li>Кастомные faker'ы для специфичных данных</li>
+                            <li>Экспорт в PostgreSQL, MongoDB, файлы</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Go</span>
+                        <span class="tech-tag">Faker</span>
+                        <span class="tech-tag">JSON Schema</span>
+                        <span class="tech-tag">Cobra</span>
+                        <span class="tech-tag">Viper</span>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up stagger-4" data-category="automation">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">Microservices Integration Tests</h3>
+                            <span class="project-status status-completed">Завершено</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link" title="Private repo">🔒</a>
+                        </div>
+                    </div>
+
+                    <div class="project-meta">
+                        <span class="meta-item">
+                            <span class="meta-icon">📅</span>
+                            2023
+                        </span>
+                        <span class="meta-item">
+                            <span class="meta-icon">🏢</span>
+                            Корпоративный проект
+                        </span>
+                    </div>
+
+                    <p class="project-description">
+                        Комплексный набор интеграционных тестов для микросервисной архитектуры e-commerce платформы.
+                        Тестирование взаимодействия между 20+ сервисами, валидация бизнес-логики и обработка
+                        граничных случаев.
+                    </p>
+
+                    <div class="project-highlights">
+                        <h4>Результаты:</h4>
+                        <ul class="highlights-list">
+                            <li>500+ интеграционных тестов</li>
+                            <li>Обнаружено 150+ багов до продакшена</li>
+                            <li>Время выполнения: 15 минут (параллельно)</li>
+                            <li>Покрытие критичных сценариев: 95%</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Go</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">RabbitMQ</span>
+                        <span class="tech-tag">Redis</span>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up stagger-5" data-category="framework">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">Mock Server Framework</h3>
+                            <span class="project-status status-active">В разработке</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/alexeypetrov/mock-server" class="project-link" title="GitHub">💻</a>
+                        </div>
+                    </div>
+
+                    <div class="project-meta">
+                        <span class="meta-item">
+                            <span class="meta-icon">📅</span>
+                            2024
+                        </span>
+                        <span class="meta-item">
+                            <span class="meta-icon">⭐</span>
+                            45+ звезд на GitHub
+                        </span>
+                    </div>
+
+                    <p class="project-description">
+                        Легковесный mock-сервер для имитации внешних API во время тестирования.
+                        Поддержка динамических сценариев, задержек, ошибок и различных форматов ответов.
+                        Идеально подходит для разработки и тестирования без зависимости от внешних сервисов.
+                    </p>
+
+                    <div class="project-highlights">
+                        <h4>Фичи:</h4>
+                        <ul class="highlights-list">
+                            <li>Конфигурация через YAML/JSON</li>
+                            <li>Динамические ответы на основе запросов</li>
+                            <li>Симуляция задержек и ошибок</li>
+                            <li>Web UI для управления моками</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Go</span>
+                        <span class="tech-tag">Echo</span>
+                        <span class="tech-tag">WebSocket</span>
+                        <span class="tech-tag">SQLite</span>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up stagger-6" data-category="automation">
+                    <div class="project-header">
+                        <div>
+                            <h3 class="project-title">CI/CD Pipeline Optimizer</h3>
+                            <span class="project-status status-completed">Завершено</span>
+                        </div>
+                    </div>
+
+                    <div class="project-meta">
+                        <span class="meta-item">
+                            <span class="meta-icon">📅</span>
+                            2023
+                        </span>
+                    </div>
+
+                    <p class="project-description">
+                        Оптимизация CI/CD пайплайнов для ускорения процесса тестирования.
+                        Внедрение параллельного выполнения тестов, умного кэширования и
+                        автоматического определения affected tests.
+                    </p>
+
+                    <div class="project-highlights">
+                        <h4>Достижения:</h4>
+                        <ul class="highlights-list">
+                            <li>Сокращение времени пайплайна с 45 до 12 минут</li>
+                            <li>Экономия вычислительных ресурсов на 60%</li>
+                            <li>Автоматический retry для flaky tests</li>
+                            <li>Smart test selection на основе изменений</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">GitLab CI</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Go</span>
+                        <span class="tech-tag">Shell</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Павел Сливенко. QA Automation Engineer</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Simple filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Filter projects
+                const filter = this.getAttribute('data-filter');
+                document.querySelectorAll('.project-card').forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

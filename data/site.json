@@ -1,0 +1,29 @@
+{
+  "name": "Павел Сливенко",
+  "role": "QA Automation Engineer (Go)",
+  "tagline": "5+ лет в автоматизации тестирования • Go • TDD • CI/CD",
+  "email": "slivenko.pavel@mail.ru",
+  "github": "https://github.com/ChebupelkaXD",
+  "telegram": "https://t.me/vuorg",
+  "linkedin": "https://linkedin.com/in/slivenko-pavel-b7a8b936b",
+
+  "about": {
+    "intro": "Привет! Я <strong>Паша</strong> - QA Automation Engineer с более чем <strong>3 годами опыта</strong> в тестировании и разработке. Специализируюсь на автоматизации тестирования с использованием\n<strong>Go</strong>, создании надёжных фреймворков и внедрении лучших практик в процессы разработки.",
+    "mission": "Мой путь в QA начался с ручного тестирования, но очень быстро я понял силу автоматизации. Сейчас я фокусируюсь на создании комплексных решений для тестирования, которые помогают командам выпускать качественный продукт быстрее и с большей уверенностью."
+  },
+
+  "skills": [
+    {"name": "Go",                "level": "Advanced", "icon": "golang"},
+    {"name": "Test Automation",   "level": "Expert",   "icon": "test"},
+    {"name": "TDD / BDD",         "level": "Advanced"},
+    {"name": "Docker / CI/CD",    "level": "Intermediate"}
+  ],
+
+  "social": [
+    {"name": "GitHub",   "url": "https://github.com/ChebupelkaXD",   "icon": "github"},
+    {"name": "Telegram", "url": "https://t.me/vuorg",         "icon": "telegram"},
+    {"name": "LinkedIn", "url": "https://linkedin.com/in/slivenko-pavel-b7a8b936b", "icon": "linkedin"}
+  ],
+
+  "interests": ["Геймдев", "Open Source", "Техническая литература", "Бег", "AI/ML"]
+}

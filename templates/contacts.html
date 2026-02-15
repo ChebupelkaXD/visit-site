@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты | Павел Сливенко</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .contact-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent-green);
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-primary);
+        }
+
+        .contact-value {
+            color: var(--accent-green);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+        }
+
+        .contact-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        .contact-form-section {
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        .contact-form {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Manrope', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+        }
+
+        .availability {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .availability-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.1);
+            }
+        }
+
+        .availability-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .social-proof {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-proof h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-green);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 968px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 6s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 9s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 12s;"></div>
+
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">&lt;/QA&gt;</a>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/about">О себе</a></li>
+                <li><a href="/skills">Навыки</a></li>
+<!--                <li><a href="/projects">Проекты</a></li>-->
+                <li><a href="/experience">Опыт</a></li>
+                <li><a href="/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Свяжитесь со мной</h1>
+            <p class="page-subtitle">Открыт для новых возможностей и интересных проектов</p>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <p class="contact-intro">
+                        Ищете опытного QA Automation Engineer для вашей команды? Или хотите обсудить потенциальное сотрудничество?
+                        Буду рад пообщаться! Отвечаю обычно в течение 24 часов.
+                    </p>
+
+                    <div class="availability">
+                        <div class="availability-status">
+                            <span class="status-dot"></span>
+                            Открыт для предложений
+                        </div>
+                        <div class="availability-text">
+                            Рассматриваю интересные проекты и возможности удаленной работы
+                        </div>
+                    </div>
+
+                    <div class="contact-methods">
+                        <a href="mailto:aleksey.petrov@example.com" class="contact-item fade-in-up stagger-1">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <div class="contact-value">{{.Email}}</div>
+                                <div class="contact-description">Для официальных предложений</div>
+                            </div>
+                        </a>
+
+                        <a href="{{.Telegram}}" class="contact-item fade-in-up stagger-2">
+                            <div class="contact-icon">✈️</div>
+                            <div class="contact-details">
+                                <h3>Telegram</h3>
+                                <div class="contact-value">@vuorg</div>
+                                <div class="contact-description">Быстрая связь для обсуждения проектов</div>
+                            </div>
+                        </a>
+
+                        <a href="{{.Linkedin}}" class="contact-item fade-in-up stagger-3">
+                            <div class="contact-icon">💼</div>
+                            <div class="contact-details">
+                                <h3>LinkedIn</h3>
+                                <div class="contact-value">@pavelslivenko</div>
+                                <div class="contact-description">Профессиональная сеть</div>
+                            </div>
+                        </a>
+
+                        <a href="{{.Github}}" class="contact-item fade-in-up stagger-4">
+                            <div class="contact-icon">💻</div>
+                            <div class="contact-details">
+                                <h3>GitHub</h3>
+                                <div class="contact-value">@pavelslivenko</div>
+                                <div class="contact-description">Мои проекты и вклад в open source</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="social-proof fade-in-up stagger-5">
+                        <h3>Статистика</h3>
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">100К+</div>
+                                <div class="stat-label">Выпитых латте</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">10+</div>
+                                <div class="stat-label">Проектов</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">3+</div>
+                                <div class="stat-label">Лет опыта</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-section">
+                    <div class="contact-form">
+                        <h2 style="margin-bottom: 1.5rem; color: var(--text-primary);">Или напишите сразу</h2>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Ваше имя *</label>
+                                <input type="text" id="name" name="name" required placeholder="Введите имя">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required placeholder="example@mail.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Тема</label>
+                                <input type="text" id="subject" name="subject" placeholder="Предложение о сотрудничестве">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Сообщение *</label>
+                                <textarea id="message" name="message" required placeholder="Расскажите о вашем проекте или предложении..."></textarea>
+                            </div>
+
+                            <button type="submit" class="form-submit">Отправить сообщение</button>
+                        </form>
+                        
+                        <div id="formMessage" style="margin-top: 1rem; text-align: center; color: var(--accent-green); display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Павел Сливенко. QA Automation Engineer</p>
+            <p style="margin-top: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+                <span style="color: var(--accent-green);">console.log</span>("Давайте создадим что-то крутое вместе! 🚀")
+            </p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Here you would typically send the data to your Go backend
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const messageEl = document.getElementById('formMessage');
+                messageEl.style.display = 'block';
+                messageEl.textContent = 'Спасибо за сообщение! Я свяжусь с вами в ближайшее время.';
+                messageEl.style.color = 'var(--accent-green)';
+                this.reset();
+            })
+            .catch(error => {
+                const messageEl = document.getElementById('formMessage');
+                messageEl.style.display = 'block';
+                messageEl.textContent = 'Произошла ошибка. Пожалуйста, попробуйте позже или свяжитесь со мной напрямую.';
+                messageEl.style.color = '#ff5f56';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.git
+.gitignore
+.gitattributes
+
+*_test.go
+
+.env
+
+.idea/
+tests/
+

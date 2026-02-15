@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Навыки | Павел Сливенко</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .skill-card {
+            padding: 2rem;
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.3));
+        }
+
+        .skill-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .skill-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .progress-section {
+            margin-top: 3rem;
+        }
+
+        .progress-item {
+            margin-bottom: 2rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-percentage {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-green);
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
+            border-radius: 10px;
+            transition: width 1s ease-out;
+            width: 0;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .certifications {
+            margin-top: 4rem;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-name {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .cert-issuer {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-date {
+            color: var(--accent-cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .tools-section {
+            margin-top: 4rem;
+        }
+
+        .tools-category {
+            margin-bottom: 3rem;
+        }
+
+        .tools-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .tool-item {
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .tool-item:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-3px);
+        }
+
+        .tool-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 6s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 9s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 12s;"></div>
+
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">&lt;/QA&gt;</a>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/about">О себе</a></li>
+                <li><a href="/skills">Навыки</a></li>
+<!--                <li><a href="/projects">Проекты</a></li>-->
+                <li><a href="/experience">Опыт</a></li>
+                <li><a href="/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Технические навыки</h1>
+            <p class="page-subtitle">Мой технический стек и компетенции</p>
+
+            <div class="skills-grid">
+                <div class="skill-card card fade-in-up stagger-1">
+                    <div class="skill-icon">🚀</div>
+                    <h3 class="skill-title">Автоматизация тестирования</h3>
+                    <p class="skill-description">
+                        Создание комплексных решений для автоматизации тестирования с использованием современных подходов и инструментов.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Go</span>
+                        <span class="tech-tag">Testify</span>
+                        <!--
+                        <span class="tech-tag">Ginkgo</span>
+                        <span class="tech-tag">Gomega</span>-->
+                    </div>
+                </div>
+
+                <div class="skill-card card fade-in-up stagger-2">
+                    <div class="skill-icon">🔌</div>
+                    <h3 class="skill-title">API Testing</h3>
+                    <p class="skill-description">
+                        Тестирование REST API, gRPC сервисов. Разработка интеграционного тестирования.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">REST</span>
+                        <span class="tech-tag">gRPC</span>
+                        <!--<span class="tech-tag">GraphQL</span>-->
+                        <span class="tech-tag">Postman</span>
+                    </div>
+                </div>
+
+                <div class="skill-card card fade-in-up stagger-3">
+                    <div class="skill-icon">⚙️</div>
+                    <h3 class="skill-title">CI/CD & DevOps</h3>
+                    <p class="skill-description">
+                        Интеграция автотестов в pipeline, контейнеризация, настройка окружений для тестирования.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">GitLab CI</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <!--<span class="tech-tag">Jenkins</span>-->
+                    </div>
+                </div>
+
+                <div class="skill-card card fade-in-up stagger-4">
+                    <div class="skill-icon">📊</div>
+                    <h3 class="skill-title">Базы данных</h3>
+                    <p class="skill-description">
+                        Тестирование взаимодействия с БД, написание тестовых миграций, проверка целостности данных.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">PostgreSQL</span>
+                        <!--<span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">ClickHouse</span>-->
+                    </div>
+                </div>
+
+                <!--<div class="skill-card card fade-in-up stagger-5">
+                    <div class="skill-icon">📈</div>
+                    <h3 class="skill-title">Нагрузочное тестирование</h3>
+                    <p class="skill-description">
+                        Проведение performance и stress тестирования, анализ узких мест, оптимизация производительности.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">K6</span>
+                        <span class="tech-tag">JMeter</span>
+                        <span class="tech-tag">Gatling</span>
+                        <span class="tech-tag">Grafana</span>
+                    </div>
+                </div>
+
+                <div class="skill-card card fade-in-up stagger-6">
+                    <div class="skill-icon">🔒</div>
+                    <h3 class="skill-title">Тестирование безопасности</h3>
+                    <p class="skill-description">
+                        Базовые проверки безопасности, OWASP Top 10, анализ уязвимостей и тестирование аутентификации.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">OWASP ZAP</span>
+                        <span class="tech-tag">Burp Suite</span>
+                        <span class="tech-tag">SQL Injection</span>
+                        <span class="tech-tag">XSS</span>
+                    </div>
+                </div>-->
+            </div>
+
+            <div class="progress-section fade-in-up">
+                <h2 class="section-title">Уровень владения</h2>
+                
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Go</span>
+                        <span class="progress-percentage">90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="90"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">API Testing</span>
+                        <span class="progress-percentage">95%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="95"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Docker & Kubernetes</span>
+                        <span class="progress-percentage">85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="85"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">CI/CD (GitLab, Jenkins)</span>
+                        <span class="progress-percentage">88%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="88"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">SQL Databases</span>
+                        <span class="progress-percentage">80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="80"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span class="progress-label">Performance Testing</span>
+                        <span class="progress-percentage">82%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="82"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="certifications fade-in-up">
+                <h2 class="section-title">Сертификаты</h2>
+                <div class="cert-grid">
+                    <div class="cert-card card">
+                        <div class="cert-icon">🏆</div>
+                        <div class="cert-name">ISTQB Certified Tester</div>
+                        <div class="cert-issuer">ISTQB</div>
+                        <div class="cert-date">2021</div>
+                    </div>
+
+                    <div class="cert-card card">
+                        <div class="cert-icon">☸️</div>
+                        <div class="cert-name">Kubernetes Administrator</div>
+                        <div class="cert-issuer">CNCF</div>
+                        <div class="cert-date">2023</div>
+                    </div>
+
+                    <div class="cert-card card">
+                        <div class="cert-icon">🐹</div>
+                        <div class="cert-name">Go Developer Certification</div>
+                        <div class="cert-issuer">Go Academy</div>
+                        <div class="cert-date">2022</div>
+                    </div>
+                </div>
+            </div>-->
+
+            <div class="tools-section fade-in-up">
+                <h2 class="section-title">Инструменты и технологии</h2>
+                
+                <div class="tools-category">
+                    <h3>Языки программирования</h3>
+                    <div class="tools-grid">
+                        <div class="tool-item">Go</div>
+                        <div class="tool-item">Python</div>
+                        <div class="tool-item">JavaScript</div>
+                        <div class="tool-item">TypeScript</div>
+                        <div class="tool-item">Bash</div>
+                    </div>
+                </div>
+
+                <div class="tools-category">
+                    <h3>Тестовые фреймворки</h3>
+                    <div class="tools-grid">
+                        <div class="tool-item">Testify</div>
+                        <!--<div class="tool-item">Ginkgo</div>
+                        <div class="tool-item">Gomega</div>-->
+                        <div class="tool-item">Pytest</div>
+                        <!--<div class="tool-item">Jest</div>
+                        <div class="tool-item">Mocha</div>-->
+                    </div>
+                </div>
+
+                <div class="tools-category">
+                    <h3>CI/CD</h3>
+                    <div class="tools-grid">
+                        <div class="tool-item">GitLab CI</div>
+<!--                        <div class="tool-item">Jenkins</div>-->
+                        <div class="tool-item">GitHub Actions</div>
+                        <div class="tool-item">CircleCI</div>
+<!--                        <div class="tool-item">TeamCity</div>-->
+                    </div>
+                </div>
+
+                <div class="tools-category">
+                    <h3>Контейнеризация</h3>
+                    <div class="tools-grid">
+                        <div class="tool-item">Docker</div>
+                        <div class="tool-item">Kubernetes</div>
+                        <div class="tool-item">Docker Compose</div>
+<!--                        <div class="tool-item">Helm</div>-->
+                    </div>
+                </div>
+
+                <!--<div class="tools-category">
+                    <h3>Мониторинг и логирование</h3>
+                    <div class="tools-grid">
+                        <div class="tool-item">Grafana</div>
+                        <div class="tool-item">Prometheus</div>
+                        <div class="tool-item">ELK Stack</div>
+                        <div class="tool-item">Jaeger</div>
+                        <div class="tool-item">Allure</div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Павел Сливенко. QA Automation Engineer</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Animate progress bars
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const progress = entry.target.getAttribute('data-progress');
+                        entry.target.style.width = progress + '%';
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            progressBars.forEach(bar => observer.observe(bar));
+        });
+    </script>
+</body>
+</html>

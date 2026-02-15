@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О себе | Павел Сливенко</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .about-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-image-section {
+            position: sticky;
+            top: 120px;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 3px solid var(--accent-green);
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.3);
+            background: linear-gradient(135deg, var(--bg-secondary), var(--code-bg));
+            margin-bottom: 2rem;
+        }
+
+        .about-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /*
+        .profile-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .profile-placeholder-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .profile-placeholder-text {
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+        }*/
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            border-color: var(--accent-green);
+            transform: translateX(5px);
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+        }
+
+        .social-info {
+            flex: 1;
+        }
+
+        .social-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .social-handle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .about-text {
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .intro-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent-green);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box h3 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .value-item {
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .value-item:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .value-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .interests {
+            margin-top: 3rem;
+        }
+
+        .interests-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .interest-tag {
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 25px;
+            color: var(--accent-green);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .interest-tag:hover {
+            background: rgba(0, 255, 136, 0.2);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 968px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image-section {
+                position: static;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 6s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 9s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 12s;"></div>
+
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">&lt;/QA&gt;</a>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Главная</a></li>
+                <li><a href="/about">О себе</a></li>
+                <li><a href="/skills">Навыки</a></li>
+<!--                <li><a href="/projects">Проекты</a></li>-->
+                <li><a href="/experience">Опыт</a></li>
+                <li><a href="/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">О себе</h1>
+            <p class="page-subtitle">Немного обо мне и моем пути в QA</p>
+
+            <div class="about-content">
+                <div class="about-image-section fade-in-up">
+                    <div class="about-image-wrapper">
+                        <img src="/static/img/photo.jpg" alt="Павел Сливенко">
+                    </div>
+
+                    <div class="social-links">
+                        <a href="{{.Github}}" class="social-link">
+                            <span class="social-icon">💻</span>
+                            <div class="social-info">
+                                <div class="social-name">GitHub</div>
+                                <div class="social-handle">@pavelslivenko</div>
+                            </div>
+                        </a>
+                        <a href="{{.Linkedin}}" class="social-link">
+                            <span class="social-icon">💼</span>
+                            <div class="social-info">
+                                <div class="social-name">LinkedIn</div>
+                                <div class="social-handle">@pavelslivenko</div>
+                            </div>
+                        </a>
+                        <a href="{{.Telegram}}" class="social-link">
+                            <span class="social-icon">✈️</span>
+                            <div class="social-info">
+                                <div class="social-name">Telegram</div>
+                                <div class="social-handle">@vuorg</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="about-text">
+                    <p class="intro-text">
+                    {{.About.Intro}}
+                    </p>
+
+                    <p class="intro-text">
+                        {{.About.Mission}}
+                    </p>
+
+                    <div class="highlight-box fade-in-up stagger-2">
+                        <h3>🎯 Моя миссия</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.8;">
+                            Создавать надёжные, масштабируемые решения для автоматизации тестирования, которые делают 
+                            процесс разработки более эффективным и помогают командам доставлять качественный продукт своим пользователям.
+                        </p>
+                    </div>
+
+                    <h2 class="section-title" style="margin-top: 3rem;">Мои ценности</h2>
+                    <div class="values-grid">
+                        <div class="value-item fade-in-up stagger-3">
+                            <div class="value-icon">🔍</div>
+                            <div class="value-title">Внимание к деталям</div>
+                            <p class="value-description">
+                                Качественное тестирование начинается с тщательного анализа и понимания каждого аспекта системы.
+                            </p>
+                        </div>
+
+                        <div class="value-item fade-in-up stagger-4">
+                            <div class="value-icon">⚡</div>
+                            <div class="value-title">Автоматизация</div>
+                            <p class="value-description">
+                                Стремлюсь автоматизировать рутинные процессы, чтобы команда могла фокусироваться на сложных задачах.
+                            </p>
+                        </div>
+
+                        <div class="value-item fade-in-up stagger-5">
+                            <div class="value-icon">📚</div>
+                            <div class="value-title">Непрерывное обучение</div>
+                            <p class="value-description">
+                                Технологии постоянно развиваются, и я стремлюсь быть в курсе последних трендов и практик.
+                            </p>
+                        </div>
+
+                        <div class="value-item fade-in-up stagger-6">
+                            <div class="value-icon">🤝</div>
+                            <div class="value-title">Командная работа</div>
+                            <p class="value-description">
+                                Качество — это командная ответственность. Я верю в тесное сотрудничество с разработчиками.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="interests fade-in-up">
+                        <h2 class="section-title">Интересы и хобби</h2>
+                        <div class="interests-list">
+                            <span class="interest-tag">🎮 Геймдев</span>
+                            <span class="interest-tag">🚀 Open Source</span>
+                            <span class="interest-tag">📖 Техническая литература</span>
+                            <span class="interest-tag">🏃 Бег</span>
+                            <span class="interest-tag">🎸 Музыка</span>
+                            <span class="interest-tag">🌍 Путешествия</span>
+                            <span class="interest-tag">☕ Кофе</span>
+                            <span class="interest-tag">🤖 AI/ML</span>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box fade-in-up" style="margin-top: 3rem;">
+                        <h3>💡 Интересный факт</h3>
+                        <p style="color: var(--text-secondary); line-height: 1.8;">
+                            Параллельно я также занимаюсь автоматизацией рутинных бизнес процессов на базе технологий RPA.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Павел Сливенко. QA Automation Engineer</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
