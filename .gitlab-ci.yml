@@ -1,4 +1,4 @@
-test_image: &test_image golang:1.25
+image: golang:1.25
 
 stages:
   - test
@@ -7,7 +7,7 @@ stages:
 
 unit-tests:
   stage: test
-  image: *test_image
+  image: golang:1.25
   script:
     - go test -v ./...
   rules:
@@ -17,7 +17,7 @@ unit-tests:
 
 integration-tests:
   stage: test
-  image: *test_image
+  image: golang:1.25
   script:
     - go test -v -tags=integration ./...
   rules:
@@ -27,9 +27,9 @@ integration-tests:
 
 build:
   stage: build
-  image: docker:stable
+  image: docker:28
   services:
-    - docker:dind
+    - docker:28-dind
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
@@ -39,9 +39,6 @@ build:
     - if: '$CI_COMMIT_BRANCH == "dev" || $CI_COMMIT_BRANCH == "master"'
       when: on_success
 
-# ────────────────────────────────────────────────
-# Деплой — ТОЛЬКО на master
-# ────────────────────────────────────────────────
 deploy_production:
   stage: deploy
   image: alpine:latest
