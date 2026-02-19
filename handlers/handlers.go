@@ -101,7 +101,7 @@ func ContactAPI(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Printf("Новый запрос на сотрудничество от %s, Email: %s, Сообщение: %s", input.Name, input.Email, input.Message)
+	//log.Printf("Новый запрос на сотрудничество от %s, Email: %s, Сообщение: %s", input.Name, input.Email, input.Message)
 
 	smtpHost := config.SMTP.Host
 	smtpPort := config.SMTP.Port
