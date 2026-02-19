@@ -19,7 +19,7 @@ type Tests []struct {
 	expect  int
 }
 
-func TestUnitHandlersPage(t *testing.T) {
+func TestHandlersPage(t *testing.T) {
 
 	t.Run("Тест TemplateRender", func(t *testing.T) {
 		w := httptest.NewRecorder()
@@ -66,7 +66,7 @@ func TestUnitHandlersPage(t *testing.T) {
 	})
 }
 
-func TestUnitHandlersContactAPI(t *testing.T) {
+func TestHandlersContactAPI(t *testing.T) {
 	tests := Tests{
 		{"Не разрешенный запрос", []string{http.MethodGet, http.MethodDelete, http.MethodPatch, http.MethodPut, http.MethodHead, http.MethodOptions}, "/api/contact", nil, http.StatusInternalServerError},
 		{"Битый JSON", []string{http.MethodPost}, "/api/contact", strings.NewReader(`{"name": "Paul", "email": "example@mail.ru", "message": "Hello"`), http.StatusBadRequest},
