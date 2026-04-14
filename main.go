@@ -3,9 +3,11 @@ package main
 import (
 	"log"
 	"net/http"
+	"porfolio/db"
 	"porfolio/handlers"
 
 	"github.com/gorilla/mux"
+	_ "github.com/lib/pq"
 )
 
 type Route struct {
@@ -15,6 +17,12 @@ type Route struct {
 }
 
 func main() {
+	if err := db.Init(); err != nil {
+		log.Fatal(err)
+	}
+
+	defer db.DB.Close()
+
 	r := mux.NewRouter()
 
 	routes := []Route{

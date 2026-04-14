@@ -29,7 +29,7 @@ func TemplateRender(w http.ResponseWriter, tmplName string) {
 	err := templates.ExecuteTemplate(w, tmplName, data.Data)
 
 	if err != nil {
-		log.Printf("Template error (%s): %v", tmplName, err)
+		//log.Printf("Template error (%s): %v", tmplName, err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}

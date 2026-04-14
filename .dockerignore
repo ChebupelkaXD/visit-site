@@ -5,6 +5,7 @@
 *_test.go
 
 .env
+docker-compose.local.yml
 
 .idea/
 tests/
