@@ -25,21 +25,11 @@ func init() {
 	templates = template.Must(template.ParseGlob(filepath.Join(templatesDir, "*.html")))
 }
 
-/*var templates = template.Must(template.ParseFiles(
-	"templates/index.html",
-	"templates/notfound.html",
-	"templates/about.html",
-	"templates/skills.html",
-	"templates/projects.html",
-	"templates/experience.html",
-	"templates/contacts.html",
-))*/
-
 func TemplateRender(w http.ResponseWriter, tmplName string) {
 	err := templates.ExecuteTemplate(w, tmplName, data.Data)
 
 	if err != nil {
-		log.Printf("Template error (%s): %v", tmplName, err)
+		//log.Printf("Template error (%s): %v", tmplName, err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
