@@ -50,33 +50,33 @@ deploy_production:
     - ssh-keyscan -H $PROD_SERVER_IP >> ~/.ssh/known_hosts
   script:
     - |
-      ssh -o StrictHostKeyChecking=no $PROD_USER@$PROD_SERVER_IP '
+      ssh -o StrictHostKeyChecking=no $PROD_USER@$PROD_SERVER_IP "
         set -e
 
         cd /opt/portfolio
 
-        echo "=== Логинимся в Docker Hub ==="
-        echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+        echo '=== Логинимся в Docker Hub ==='
+        echo \"$DOCKERHUB_PASSWORD\" | docker login -u \"$DOCKERHUB_USERNAME\" --password-stdin
 
-        echo "=== Логинимся в GitLab Registry ==="
-        echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+        echo '=== Логинимся в GitLab Registry ==='
+        echo \"$CI_REGISTRY_PASSWORD\" | docker login -u \"$CI_REGISTRY_USER\" --password-stdin \"$CI_REGISTRY\"
 
-        echo "=== Переменные окружения ==="
-        echo "REGISTRY_IMAGE = $CI_REGISTRY_IMAGE"
-        echo "TAG            = $CI_COMMIT_REF_SLUG"
+        echo '=== Переменные для compose ==='
+        echo \"REGISTRY_IMAGE = $CI_REGISTRY_IMAGE\"
+        echo \"TAG            = $CI_COMMIT_REF_SLUG\"
 
-        echo "=== Pull и запуск приложения ==="
-        REGISTRY_IMAGE="$CI_REGISTRY_IMAGE" \
-        TAG="$CI_COMMIT_REF_SLUG" \
+        echo '=== Pull и запуск ==='
+        REGISTRY_IMAGE=\"$CI_REGISTRY_IMAGE\" \
+        TAG=\"$CI_COMMIT_REF_SLUG\" \
         docker compose pull app
 
-        REGISTRY_IMAGE="$CI_REGISTRY_IMAGE" \
-        TAG="$CI_COMMIT_REF_SLUG" \
+        REGISTRY_IMAGE=\"$CI_REGISTRY_IMAGE\" \
+        TAG=\"$CI_COMMIT_REF_SLUG\" \
         docker compose up -d --force-recreate app
 
-        echo "=== Деплой завершён ==="
+        echo '=== Деплой завершён успешно ==='
         docker compose ps
-      '
+      "
   rules:
     - if: '$CI_COMMIT_BRANCH == "master"'
       when: on_success
