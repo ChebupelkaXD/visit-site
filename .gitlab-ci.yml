@@ -50,8 +50,8 @@ deploy_production:
     - ssh-keyscan -H $PROD_SERVER_IP >> ~/.ssh/known_hosts
   script:
     - |
-      ssh $PROD_USER@$PROD_SERVER_IP '
-        set -e  # останавливать при любой ошибке
+      ssh -o StrictHostKeyChecking=no $PROD_USER@$PROD_SERVER_IP '
+        set -e
 
         cd /opt/portfolio
 
@@ -61,17 +61,20 @@ deploy_production:
         echo "=== Логинимся в GitLab Registry ==="
         echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
 
-        echo "=== Перезапускаем приложение ==="
-        # Передаём переменные явно через env
-        REGISTRY_IMAGE="'$CI_REGISTRY_IMAGE'" \
-        TAG="'$CI_COMMIT_REF_SLUG'" \
+        echo "=== Переменные окружения ==="
+        echo "REGISTRY_IMAGE = $CI_REGISTRY_IMAGE"
+        echo "TAG            = $CI_COMMIT_REF_SLUG"
+
+        echo "=== Pull и запуск приложения ==="
+        REGISTRY_IMAGE="$CI_REGISTRY_IMAGE" \
+        TAG="$CI_COMMIT_REF_SLUG" \
         docker compose pull app
 
-        REGISTRY_IMAGE="'$CI_REGISTRY_IMAGE'" \
-        TAG="'$CI_COMMIT_REF_SLUG'" \
+        REGISTRY_IMAGE="$CI_REGISTRY_IMAGE" \
+        TAG="$CI_COMMIT_REF_SLUG" \
         docker compose up -d --force-recreate app
 
-        echo "=== Деплой завершён успешно ==="
+        echo "=== Деплой завершён ==="
         docker compose ps
       '
   rules:
